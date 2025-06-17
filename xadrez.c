@@ -1,8 +1,7 @@
 #include <stdio.h>
 
-int main() {
-    // Simulação de movimentação de peças de xadrez
 
+int main() {
     // === Movimentação da Torre ===
     printf("Movimentação da Torre (5 casas para a direita):\n");
     for (int i = 1; i <= 5; i++) {
@@ -28,6 +27,22 @@ int main() {
         printf("Esquerda\n");
         passosRainha++;
     } while (passosRainha <= 8);
+
+    printf("\n");
+
+    // === Movimentação do Cavalo ===
+    printf("Movimentação do Cavalo (2 casas para baixo e 1 para a esquerda):\n");
+
+    int i;
+    for (i = 1; i <= 2; i++) {
+        printf("Baixo\n");
+    }
+
+    int j = 1;
+    while (j <= 1) {
+        printf("Esquerda\n");
+        j++;
+    }
 
     return 0;
 }
