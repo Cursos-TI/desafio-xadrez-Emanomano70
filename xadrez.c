@@ -1,48 +1,85 @@
 #include <stdio.h>
 
+// Função recursiva para movimentar a Torre (5 casas para a direita)
+void moverTorre(int passoAtual, int totalPassos) {
+    if (passoAtual > totalPassos) return;  // Condição de parada
+    printf("Direita\n");
+    moverTorre(passoAtual + 1, totalPassos);  // Chamada recursiva
+}
 
+// Função recursiva para movimentar a Rainha (8 casas para a esquerda)
+void moverRainha(int passoAtual, int totalPassos) {
+    if (passoAtual > totalPassos) return;  // Condição de parada
+    printf("Esquerda\n");
+    moverRainha(passoAtual + 1, totalPassos);  // Chamada recursiva
+}
+
+// Função recursiva para o Bispo: controla as diagonais
+void moverBispoRecursivo(int passoAtual, int totalPassos) {
+    if (passoAtual > totalPassos) return;
+    printf("Cima Direita\n");
+    moverBispoRecursivo(passoAtual + 1, totalPassos);
+}
+
+// Função com loops aninhados para o Bispo (requisito: loop externo vertical, interno horizontal)
+void moverBispoComLoops(int totalPassos) {
+    printf("Movimentação detalhada do Bispo (usando loops aninhados):\n");
+    for (int vertical = 1; vertical <= totalPassos; vertical++) {
+        for (int horizontal = 1; horizontal <= 1; horizontal++) {
+            printf("Cima Direita\n");
+        }
+    }
+}
+
+// Movimentação do Cavalo: 2 casas para cima e 1 para a direita, usando loops complexos
+void moverCavalo() {
+    printf("Movimentação do Cavalo (2 casas para cima e 1 para a direita):\n");
+
+    int direcaoVertical = 0;
+    int direcaoHorizontal = 0;
+
+    for (int i = 1; i <= 3; i++) {  // Controla o número de etapas (máx 3: 2 verticais + 1 horizontal)
+        if (i <= 2) {
+            for (int j = 0; j < 1; j++) {  // Loop interno para cada movimento vertical
+                printf("Cima\n");
+                direcaoVertical++;
+                if (direcaoVertical == 2) break;  // Parar após 2 movimentos para cima
+            }
+        } else {
+            int k = 0;
+            while (k < 1) {
+                printf("Direita\n");
+                direcaoHorizontal++;
+                k++;
+            }
+        }
+    }
+}
+
+// Função principal
 int main() {
-    // === Movimentação da Torre ===
+    // === Torre ===
     printf("Movimentação da Torre (5 casas para a direita):\n");
-    for (int i = 1; i <= 5; i++) {
-        printf("Direita\n");
-    }
-
+    moverTorre(1, 5);
     printf("\n");
 
-    // === Movimentação do Bispo ===
+    // === Bispo ===
     printf("Movimentação do Bispo (5 casas na diagonal para cima e à direita):\n");
-    int passosBispo = 1;
-    while (passosBispo <= 5) {
-        printf("Cima Direita\n");
-        passosBispo++;
-    }
-
+    moverBispoRecursivo(1, 5);
     printf("\n");
 
-    // === Movimentação da Rainha ===
+    // === Rainha ===
     printf("Movimentação da Rainha (8 casas para a esquerda):\n");
-    int passosRainha = 1;
-    do {
-        printf("Esquerda\n");
-        passosRainha++;
-    } while (passosRainha <= 8);
-
+    moverRainha(1, 8);
     printf("\n");
 
-    // === Movimentação do Cavalo ===
-    printf("Movimentação do Cavalo (2 casas para baixo e 1 para a esquerda):\n");
+    // === Cavalo ===
+    moverCavalo();
+    printf("\n");
 
-    int i;
-    for (i = 1; i <= 2; i++) {
-        printf("Baixo\n");
-    }
-
-    int j = 1;
-    while (j <= 1) {
-        printf("Esquerda\n");
-        j++;
-    }
+    // === Bispo com Loops Aninhados ===
+    moverBispoComLoops(5);
+    printf("\n");
 
     return 0;
 }
